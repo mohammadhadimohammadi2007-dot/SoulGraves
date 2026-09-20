@@ -1,0 +1,22 @@
+name: SoulGraves
+version: ${project.version}
+main: ir.soulgraves.SoulGravesPlugin
+api-version: '1.21'
+author: mohammadhadi
+description: Custom grave system with ItemsAdder markers, soul particle trail, and playtime-based expiry.
+softdepend: [Vault, ItemsAdder, PlaceholderAPI]
+commands:
+  graves:
+    description: Open your grave list
+    aliases: [grave, tombs, deaths]
+    usage: /graves
+  soulgraves:
+    description: SoulGraves admin
+    aliases: [sg]
+    usage: /soulgraves reload|purge <player>|list <player>
+    permission: soulgraves.admin
+permissions:
+  soulgraves.use:
+    default: true
+  soulgraves.admin:
+    default: op

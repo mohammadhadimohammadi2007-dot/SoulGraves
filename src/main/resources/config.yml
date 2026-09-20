@@ -1,0 +1,132 @@
+# ─────────────────────────────────────────────
+#  SoulGraves configuration
+# ─────────────────────────────────────────────
+
+core:
+  max_graves_per_player: 3
+  # Playtime hours before grave expires (only counts while player is online)
+  grave_lifetime_hours: 24
+  # Hard cap in wall-clock days, even if playtime never reaches limit
+  hard_cap_days: 30
+  # How often the expiry task runs (seconds)
+  expiry_check_interval_seconds: 300
+  xp_handling: VANILLA_DROP        # VANILLA_DROP | STORE | DELETE
+
+worlds:
+  mode: BLACKLIST                  # WHITELIST | BLACKLIST
+  list:
+    - creative_world
+    - lobby
+
+# Per-world PvP behavior: GRAVE (normal grave) or DROP (vanilla drop)
+pvp_behavior:
+  default: GRAVE
+  overrides:
+    resource_overworld: DROP
+    resource_nether: DROP
+
+marker:
+  # ItemsAdder namespace:id. If empty or not loaded, fallback is used.
+  itemsadder_id: ""
+  fallback: CHEST                  # CHEST | PLAYER_HEAD | SKELETON_SKULL
+  spawn_in_unsafe: true            # spawn even inside lava/void
+
+# ─── GUI ───────────────────────────────────────
+gui:
+  size: 27
+  titles:
+    "0": "<gray>No graves"
+    "1": "<green>Your Grave"
+    "2": "<yellow>Your Graves (2/3)"
+    "3": "<red><bold>Final Rest (3/3)"
+
+  filler:
+    material: "GRAY_STAINED_GLASS_PANE"
+    custom_model_data: 0
+    name: " "
+    slots: [0,1,2,3,4,5,6,7,8, 9,17, 18,19,20,21,22,23,24,25,26]
+
+  # Each grave (1=oldest, 3=newest) has its own visual profile.
+  grave_items:
+    grave_1:
+      slot: 11
+      material: "SKELETON_SKULL"
+      custom_model_data: 0
+      name: "<green>Grave I"
+      lore:
+        - "<gray>☠ Died: <white>{death_time}"
+        - "<gray>📍 <white>{world} {x}, {y}, {z}"
+        - "<gray>⚔ Cause: <white>{death_cause}"
+        - "<gray>⏳ Expires in: <white>{time_left}"
+        - ""
+        - "<yellow>▶ Click to teleport (<gold>{cost}<yellow> coins)"
+    grave_2:
+      slot: 13
+      material: "SKELETON_SKULL"
+      custom_model_data: 0
+      name: "<yellow>Grave II"
+      lore:
+        - "<gray>☠ Died: <white>{death_time}"
+        - "<gray>📍 <white>{world} {x}, {y}, {z}"
+        - "<gray>⚔ Cause: <white>{death_cause}"
+        - "<gray>⏳ Expires in: <white>{time_left}"
+        - ""
+        - "<yellow>▶ Click to teleport (<gold>{cost}<yellow> coins)"
+    grave_3:
+      slot: 15
+      material: "WITHER_SKELETON_SKULL"
+      custom_model_data: 0
+      name: "<red>Grave III"
+      lore:
+        - "<gray>☠ Died: <white>{death_time}"
+        - "<gray>📍 <white>{world} {x}, {y}, {z}"
+        - "<gray>⚔ Cause: <white>{death_cause}"
+        - "<gray>⏳ Expires in: <white>{time_left}"
+        - ""
+        - "<yellow>▶ Click to teleport (<gold>{cost}<yellow> coins)"
+
+# ─── Teleport ──────────────────────────────────
+teleport:
+  cost:
+    enabled: true
+    amount: 250
+  cooldown_seconds: 30
+  safe_search:
+    radius: 10
+    max_scan_up: 40
+
+# ─── Soul particle trail ───────────────────────
+soul_trail:
+  enabled: true
+  particle: SOUL_FIRE_FLAME
+  activation_radius: 50            # only render when player within this many blocks
+  render_length: 40                # length of trail from player toward grave
+  step: 0.5                        # spacing between particles
+  update_ticks: 10                 # how often to render (ticks)
+  only_owner: true
+  only_latest_in_world: true
+  only_when_in_grave_world: true
+
+# ─── Death cause texts ─────────────────────────
+death_causes:
+  FALL: "<gray>Fell from height"
+  LAVA: "<gold>Burned in lava"
+  DROWNING: "<blue>Drowned"
+  ENTITY_ATTACK: "<red>Killed by {killer}"
+  ENTITY_EXPLOSION: "<red>Exploded"
+  VOID: "<dark_purple>Fell into the void"
+  SUFFOCATION: "<gray>Suffocated"
+  STARVATION: "<gold>Starved"
+  FIRE_TICK: "<red>Burned to death"
+  FIRE: "<red>Burned"
+  MAGIC: "<light_purple>Killed by magic"
+  POISON: "<green>Poisoned"
+  WITHER: "<dark_gray>Withered"
+  PROJECTILE: "<red>Shot dead"
+  FALLING_BLOCK: "<gray>Crushed"
+  LIGHTNING: "<yellow>Struck by lightning"
+  UNKNOWN: "<gray>Unknown cause"
+
+# ─── Time format ───────────────────────────────
+formatting:
+  date_pattern: "yyyy-MM-dd HH:mm"

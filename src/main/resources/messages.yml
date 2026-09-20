@@ -1,0 +1,20 @@
+prefix: "<gradient:#8f94fb:#4e54c8>[SoulGraves]</gradient> "
+
+no_graves: "<gray>You have no active graves."
+grave_created: "<gray>A grave was created at your death location. Use <yellow>/graves</yellow>."
+grave_full_drop: "<red>You already had 3 graves — your items dropped on the ground."
+
+teleport_success: "<green>Teleported near your grave."
+teleport_no_money: "<red>You need <gold>{cost}</gold> coins to teleport."
+teleport_cooldown: "<red>Wait <yellow>{seconds}s</yellow> before teleporting again."
+teleport_no_safe: "<red>Could not find a safe spot to teleport near your grave."
+
+marker_not_owner: "<red>This is not your grave."
+grave_emptied: "<gray>Your grave has been emptied and removed."
+grave_expired: "<red>One of your graves expired. All items were lost."
+grave_lost: "<red>That grave marker no longer exists — the entry was removed."
+
+admin_reload: "<green>SoulGraves reloaded."
+admin_purge: "<green>Purged {count} grave(s) for {player}."
+admin_list_header: "<gold>Graves of {player}:"
+admin_list_entry: "<gray>#{n} — {world} {x},{y},{z} — expires in {time_left}"
